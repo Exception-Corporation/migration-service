@@ -1,0 +1,64 @@
+version: "3.8"
+
+services:
+  app:
+    profiles: ["app"]
+    container_name: project-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PORT: ${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      - project-system
+    links:
+      - postgresql-database
+    depends_on:
+      - postgresql-database
+    logging:
+      driver: "local"
+
+  postgresql-database:
+    container_name: postgresql-database
+    image: postgres:14.5-alpine
+    environment:
+      - POSTGRES_DB=${PSQL_DATABASE}
+      - POSTGRES_USER=${PSQL_USERNAME}
+      - POSTGRES_PASSWORD=${PSQL_PASSWORD}
+      - PGDATA=/data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "${PSQL_PORT}:5432"
+    networks:
+      - project-system
+    restart: always
+
+  pgadmin:
+    container_name: pgadmin-system
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "${PGADMIN_PORT}:80"
+    networks:
+      - project-system
+    restart: always
+
+networks:
+  project-api:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
+
+networks:
+  project-system:
+    driver: bridge

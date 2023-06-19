@@ -1,0 +1,13 @@
+apps:
+  - script: ./build/index.js
+    name: "app"
+    instances: max
+    exec_mode: cluster
+    instance_var: INSTANCE_ID
+    autorestart: true
+    watch: true
+    merge_logs: true
+    restart_delay: 1000
+
+    env:
+      PSQL_HOST: postgresql-database
