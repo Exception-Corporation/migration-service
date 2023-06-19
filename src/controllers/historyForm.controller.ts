@@ -32,19 +32,20 @@ export class HistoryFormController {
       const formaId = req.params.formatId;
 
       const historyForms = await HistoryForm.find({
+        where: {
+          formId: Number(formaId) as any,
+        },
         relations: ["formId"],
         order: {
           createdAt: "DESC",
         },
       });
 
-      const historyForm = historyForms
-        .filter((row) => row.formId.id === Number(formaId))
-        .map((row) => {
-          row.changes = JSON.parse(row.changes);
-          (row.formId as any) = row.formId.id;
-          return row;
-        });
+      const historyForm = historyForms.map((row) => {
+        row.changes = JSON.parse(row.changes);
+        (row.formId as any) = row.formId.id;
+        return row;
+      });
 
       if (historyForm.length == 0)
         return res
