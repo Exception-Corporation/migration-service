@@ -13,10 +13,4 @@ ARG PORT
 
 EXPOSE $PORT
 
-RUN mkdir -p /app/logs
-
-RUN ln -sf /proc/1/fd/1 /app/logs/info.log \
-    && ln -sf /proc/1/fd/2 /app/logs/error.log \
-    && ln -sf /proc/1/fd/1 /app/logs/debug.log
-
 CMD pm2-runtime start ecosystem.yml
