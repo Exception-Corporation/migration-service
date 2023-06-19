@@ -63,7 +63,7 @@ export class CommentController {
         result: result,
       };
 
-      return res.status(200).send({ template });
+      return res.status(200).send(template);
     } catch (error: any) {
       return res
         .status(400)

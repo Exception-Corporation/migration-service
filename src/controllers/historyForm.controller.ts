@@ -8,6 +8,9 @@ export class HistoryFormController {
     try {
       const historyForms = await HistoryForm.find({
         relations: ["formId"],
+        order: {
+          createdAt: "DESC",
+        },
       });
 
       const hfModified = historyForms.map((row) => {
@@ -16,7 +19,7 @@ export class HistoryFormController {
         return row;
       });
 
-      return res.status(200).send({ hfModified });
+      return res.status(200).send({ data: hfModified });
     } catch (error: any) {
       return res
         .status(400)
@@ -30,6 +33,9 @@ export class HistoryFormController {
 
       const historyForms = await HistoryForm.find({
         relations: ["formId"],
+        order: {
+          createdAt: "DESC",
+        },
       });
 
       const historyForm = historyForms
