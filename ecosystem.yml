@@ -10,3 +10,4 @@ apps:
     restart_delay: 1000
 
     env:
+      PSQL_HOST: postgresql-database
