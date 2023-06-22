@@ -126,6 +126,8 @@ export class FormController {
     try {
       const id = req.params.id;
 
+      await HistoryForm.delete({ formId: { id: Number(id) } });
+
       const result = await Form.delete(id);
 
       if (result.affected === 0)
