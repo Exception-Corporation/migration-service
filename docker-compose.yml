@@ -3,7 +3,8 @@ version: "3.8"
 services:
   app:
     profiles: ["app"]
-    container_name: project-api
+    container_name: migration-service
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile
@@ -29,7 +30,7 @@ services:
       - POSTGRES_PASSWORD=${PSQL_PASSWORD}
       - PGDATA=/data/postgres
     volumes:
-      - postgres:/data/postgres
+      - postgresm:/data/postgres
     ports:
       - "${PSQL_PORT}:5432"
     networks:
@@ -56,7 +57,7 @@ networks:
     driver: bridge
 
 volumes:
-  postgres:
+  postgresm:
   pgadmin:
 
 networks:

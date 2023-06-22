@@ -11,3 +11,4 @@ apps:
 
     env:
       PSQL_HOST: postgresql-database
+      PSQL_PORT: 5432
