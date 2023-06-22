@@ -9,7 +9,7 @@ const postgres = config.database.postgresql;
 export const AppDataSource = new DataSource({
   type: "postgres",
   host: postgres.host,
-  port: 5432,
+  port: postgres.port,
   username: postgres.user,
   password: postgres.password,
   database: postgres.database,
