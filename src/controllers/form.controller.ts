@@ -161,7 +161,7 @@ export class FormController {
       const updatedForm = req.body;
 
       if (
-        !updatedForm.userId &&
+        updatedForm.userId === undefined &&
         !updatedForm.confirm &&
         !updatedForm.status &&
         !updatedForm.name &&
