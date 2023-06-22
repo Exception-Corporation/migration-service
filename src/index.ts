@@ -1,4 +1,5 @@
 import app from "./app";
+import config from "./config";
 import { AppDataSource } from "./db";
 
 async function main() {
@@ -6,8 +7,8 @@ async function main() {
     await AppDataSource.initialize();
     console.log("Database Connected");
 
-    app.listen(5000);
-    console.log("Server is listening on port", 5000);
+    app.listen(config.server.port);
+    console.log("Server is listening on port", config.server.port);
   } catch (error: any) {
     console.log(error);
   }
