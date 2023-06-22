@@ -29,11 +29,11 @@ export class HistoryFormController {
 
   static async getOne(req: Request, res: Response) {
     try {
-      const formaId = req.params.formatId;
+      const formId = req.params.formatId;
 
       const historyForms = await HistoryForm.find({
         where: {
-          formId: Number(formaId) as any,
+          formId: { id: Number(formId) },
         },
         relations: ["formId"],
         order: {
