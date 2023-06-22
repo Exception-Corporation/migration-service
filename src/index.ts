@@ -1,4 +1,5 @@
 import http from "http";
+import { Server as SocketServer } from "socket.io";
 import app from "./app";
 import config from "./config";
 import { AppDataSource } from "./db";
@@ -13,7 +14,7 @@ async function main() {
 
     new WebSocket(server).initialize();
 
-    app.listen(config.server.port);
+    server.listen(config.server.port);
 
     console.log("Server is listening on port", config.server.port);
   } catch (error: any) {

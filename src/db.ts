@@ -15,5 +15,5 @@ export const AppDataSource = new DataSource({
   database: postgres.database,
   synchronize: true,
   entities: [Form, Comment, HistoryForm],
-  logging: true,
+  logging: false,
 });
