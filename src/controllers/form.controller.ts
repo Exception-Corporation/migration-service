@@ -88,6 +88,8 @@ export class FormController {
         itemsByPage: Number(pageSize),
         formsSize: result.length,
         totalForms: forms.length,
+        totalCitas: forms.filter((form) => form.type == "cita").length,
+        totalDemands: forms.filter((form) => form.type == "demand").length,
         totalPages: Math.ceil(
           forms.length / Number(pageSize) < 1
             ? 1
