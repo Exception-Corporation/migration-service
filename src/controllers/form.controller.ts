@@ -158,6 +158,7 @@ export class FormController {
 
       if (
         !updatedForm.userId &&
+        !updatedForm.confirm &&
         !updatedForm.status &&
         !updatedForm.name &&
         !updatedForm.email &&

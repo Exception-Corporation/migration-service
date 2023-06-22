@@ -15,6 +15,9 @@ export class Form extends BaseEntity {
   @Column({ default: null })
   userId: number;
 
+  @Column({ default: null })
+  confirm: string;
+
   @Column({ type: "enum", enum: ["pending", "rejected", "finish"] })
   status: string;
 
