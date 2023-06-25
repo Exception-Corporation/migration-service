@@ -8,6 +8,15 @@ export default {
   server: {
     port: process.env.PORT,
   },
+  mailer: {
+    nodemailer: {
+      host: process.env.MAILER_HOST,
+      port: process.env.MAILER_PORT,
+      email: process.env.MAILER_EMAIL,
+      password: process.env.MAILER_PASSWORD,
+      front: process.env.MAILER_FRONT,
+    },
+  },
   JWT: {
     secretKey: process.env.JWT_SECRET_KEY,
   },

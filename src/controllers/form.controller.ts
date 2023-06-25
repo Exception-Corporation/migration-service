@@ -3,6 +3,8 @@ import { IsNull } from "typeorm";
 import { Form } from "../entitites/form.entity";
 import { HistoryForm } from "../entitites/historyForm.entity";
 import { GlobalFunctions } from "../utils/globalFunctions";
+import { NodeMailer } from "../mail/node.mailer";
+import citaTemplate from "../mail/templates/cita.template";
 
 export class FormController {
   private constructor() {}
@@ -177,6 +179,27 @@ export class FormController {
 
       if (!GlobalFunctions.getProperties(updatedForm, Object.keys(formFound))) {
         return res.status(400).send({ message: "Properties are not right" });
+      }
+
+      if (updatedForm.confirm) {
+        const { confirm } = req.headers;
+
+        if (!confirm)
+          return res.status(400).send({
+            success: false,
+            message: "Should send confirm property from headers",
+          });
+
+        const mail = new NodeMailer();
+
+        await mail.send({
+          to: updatedForm.email || formFound.email,
+          subject: "CONFIRMACIÓN DE CITA",
+          html: citaTemplate(
+            updatedForm.email || formFound.email,
+            confirm.toString()
+          ),
+        });
       }
 
       await Form.update({ id: Number(formId) }, req.body);
