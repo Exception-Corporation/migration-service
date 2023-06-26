@@ -7,7 +7,7 @@ export class CronJob {
 
   constructor() {
     this.crons = this.jobs.map((Job: any) =>
-      cron.schedule("0 */12 * * *", new Job().execute)
+      cron.schedule("0 */1 * * *", new Job().execute)
     );
   }
 
