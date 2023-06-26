@@ -52,10 +52,6 @@ services:
       - project-system
     restart: always
 
-networks:
-  project-api:
-    driver: bridge
-
 volumes:
   postgresm:
   pgadmin:
