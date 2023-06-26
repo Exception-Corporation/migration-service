@@ -52,6 +52,7 @@ export class FormController {
       form.email = newForm.email;
       form.phoneNumber = newForm.phoneNumber;
       form.reason = newForm.reason;
+      form.country = newForm.country;
       form.startDate = new Date(newForm.startDate);
       form.endDate = new Date(newForm.endDate);
       form.type = newForm.type;
