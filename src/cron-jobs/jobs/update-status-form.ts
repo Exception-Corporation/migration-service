@@ -1,5 +1,4 @@
 import { Form } from "../../entitites/form.entity";
-import { getConnection } from "typeorm";
 
 export class UpdateStatusForm {
   constructor() {}
@@ -18,13 +17,10 @@ export class UpdateStatusForm {
         })
         .getMany();
 
-      // Actualizar los formularios al estado "finish"
-      await getConnection().transaction(async (transactionManager) => {
-        for (const form of formsToUpdate) {
-          form.status = "finish";
-          await transactionManager.save(form);
-        }
-      });
+      for (const form of formsToUpdate) {
+        form.status = "finish";
+        await form.save();
+      }
 
       console.log(`Se actualizaron ${formsToUpdate.length} formularios.`);
     } catch (error) {
