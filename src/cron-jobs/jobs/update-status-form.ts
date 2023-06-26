@@ -10,11 +10,14 @@ export class UpdateStatusForm {
       // Obtener los formularios que cumplen los criterios
       const formsToUpdate = await Form.createQueryBuilder("form")
         .where("form.status = :status", { status: "pending" })
-        .andWhere("form.confirm < :minConfirmationDate", {
-          minConfirmationDate: new Date(
-            currentDate.getTime() - 12 * 60 * 60 * 1000
-          ).toISOString(),
-        })
+        .andWhere(
+          'TO_TIMESTAMP(form.confirm, \'YYYY-MM-DD"T"HH24:MI:SS"Z"\') < :minConfirmationDate',
+          {
+            minConfirmationDate: new Date(
+              currentDate.getTime() - 12 * 60 * 60 * 1000
+            ).toISOString(),
+          }
+        )
         .getMany();
 
       for (const form of formsToUpdate) {
