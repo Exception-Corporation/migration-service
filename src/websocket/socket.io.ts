@@ -2,6 +2,7 @@ import { Server as SocketServer } from "socket.io";
 
 export class WebSocket {
   private io: SocketServer;
+
   constructor(private server: any) {
     this.io = new SocketServer(this.server, {
       cors: {
@@ -12,7 +13,7 @@ export class WebSocket {
     });
   }
 
-  initialize() {
+  public initialize() {
     this.io.on("connection", (socket) => {
       console.log(socket.id);
       socket.on("message", (body) => {

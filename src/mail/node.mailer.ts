@@ -4,7 +4,7 @@ import config from "../config";
 export type options = SendMailOptions;
 
 export class NodeMailer {
-  async send(params: SendMailOptions): Promise<void> {
+  public async send(params: SendMailOptions): Promise<void> {
     try {
       const carrier = nodemailer.createTransport({
         host: config.mailer.nodemailer.host,
