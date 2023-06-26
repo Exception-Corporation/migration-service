@@ -15,8 +15,9 @@ export class WebSocket {
 
   public initialize() {
     this.io.on("connection", (socket) => {
-      console.log(socket.id);
       socket.on("message", (body) => {
+        console.log("Listening websocket - [Message]");
+
         socket.broadcast.emit("message", {
           body,
           from: socket.id.slice(8),
