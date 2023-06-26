@@ -25,6 +25,7 @@ export class FormController {
           "startDate",
           "endDate",
           "type",
+          "country",
         ])
       ) {
         return res.status(400).send({ message: "Properties are not right" });
@@ -38,7 +39,8 @@ export class FormController {
         !newForm.reason ||
         !newForm.startDate ||
         !newForm.endDate ||
-        !newForm.type
+        !newForm.type ||
+        !newForm.country
       ) {
         return res.status(400).send({ message: "All information is required" });
       }
@@ -172,7 +174,8 @@ export class FormController {
         !updatedForm.reason &&
         !updatedForm.startDate &&
         !updatedForm.endDate &&
-        !updatedForm.type
+        !updatedForm.type &&
+        !updatedForm.country
       ) {
         return res.status(400).send({ message: "Nothing has been updated" });
       }

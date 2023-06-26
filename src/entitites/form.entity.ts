@@ -27,6 +27,9 @@ export class Form extends BaseEntity {
   @Column()
   email: string;
 
+  @Column({ default: null })
+  country: string;
+
   @Column()
   phoneNumber: string;
 
