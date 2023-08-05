@@ -5,7 +5,7 @@ const WebSocket = require("@fastify/websocket");
 dotenv.config({});
 
 // eslint-disable-next-line no-undef
-const port = process.env.PORT + 1;
+const port = Number(process.env.PORT) + 1;
 (async () => {
   const app = Fastify({ logger: false, trustProxy: true });
 
