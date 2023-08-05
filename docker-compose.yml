@@ -18,12 +18,13 @@ services:
       - postgresql-database
     depends_on:
       - postgresql-database
+      - websocket
     logging:
       driver: "local"
 
   websocket:
     restart: always
-    container_name: websocket-api
+    container_name: websocket-migration
     build:
       context: .
       dockerfile: Dockerfile.websocket
