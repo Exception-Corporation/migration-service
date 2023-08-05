@@ -21,6 +21,21 @@ services:
     logging:
       driver: "local"
 
+  websocket:
+    restart: always
+    container_name: websocket-api
+    build:
+      context: .
+      dockerfile: Dockerfile.websocket
+      args:
+        PORT: 9001
+    ports:
+      - 9001:9001
+    networks:
+      - project-system
+    logging:
+      driver: "local"
+
   postgresql-database:
     container_name: postgresql-database
     image: postgres:14.5-alpine
